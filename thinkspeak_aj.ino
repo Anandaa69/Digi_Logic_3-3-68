@@ -1,5 +1,5 @@
 #include <WiFi.h>
-#include "ThingSpeak.h" // always include thingspeak header file after other header files and custom macros
+#include "ThingSpeak.h"
 
 WiFiClient  client;
 const int LED=32;
