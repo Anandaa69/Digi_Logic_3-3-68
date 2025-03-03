@@ -17,7 +17,7 @@ String client_id = "esp32-client-";
 WiFiClient wifiClient;
 MQTTClient client;
 
-// Callback function to handle incoming messages
+// Callback to handle incoming messages QoS 1
 void callback(String &topic, String &payload) {
     Serial.print("Message arrived in topic: ");
     Serial.println(topic);
@@ -27,7 +27,6 @@ void callback(String &topic, String &payload) {
 }
 
 void setup() {
-    // Set software serial baud to 115200;
     Serial.begin(115200);
 
     // Connect to WiFi
@@ -56,23 +55,20 @@ void setup() {
 }
 
 void loop() {
-    // Make sure the client is connected to the broker
     if (!client.connected()) {
         reconnect();
     }
     client.loop();
 
-    // Read the analog sensor value from pin A0
+    // Read the analog value
     int sensorValue = analogRead(A0);
     
     // Print the sensor value to Serial Monitor
     Serial.print("Sensor Value: ");
     Serial.println(sensorValue);
     
-    // Convert the sensor value to a string
     String payload = String(sensorValue);
 
-    // Publish the sensor value to the MQTT broker with QoS 1 and retain flag set to true
     if (client.publish(topic, payload, true, 1)) {  // QoS 1 and retain flag set to true
         Serial.println("Data sent to MQTT broker and retained successfully.");
     } else {
@@ -82,7 +78,6 @@ void loop() {
     delay(1000);  // Reduce the delay to 1 second
 }
 
-// Reconnect to the MQTT broker if connection is lost
 void reconnect() {
     while (!client.connected()) {
         Serial.print("Attempting MQTT connection...");
