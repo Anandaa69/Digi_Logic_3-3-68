@@ -1,16 +1,16 @@
 #include <WiFi.h>
-#include "ThingSpeak.h"  // ThingSpeak library สำหรับเขียนข้อมูล
-#include <HTTPClient.h>  // HTTPClient library สำหรับอ่านข้อมูล
+#include "ThingSpeak.h" 
+#include <HTTPClient.h>
 
 WiFiClient client;
 const int LED = 32;
-const char *ssid = "xxxxxx";   // เปลี่ยนเป็นชื่อ WiFi ของคุณ
-const char *password = "xxxxxxx";  // เปลี่ยนเป็นรหัสผ่าน WiFi ของคุณ
-unsigned long myChannelNumber = xxxxxxx;  // Channel ID สำหรับเขียนข้อมูล
-const char *myWriteAPIKey = "xxxxxxxx";  // Write API Key
-const char *apiKey = "xxxxxxxx";  // Read API Key
+const char *ssid = "xxxxxx";
+const char *password = "xxxxxxx";
+unsigned long myChannelNumber = xxxxxxx;
+const char *myWriteAPIKey = "xxxxxxxx";
+const char *apiKey = "xxxxxxxx";
 const char *server = "http://api.thingspeak.com";
-const int channelID = xxxxxxx;  // Channel ID สำหรับอ่านข้อมูล
+const int channelID = xxxxxxx;
 
 void setup() {
     Serial.begin(115200);
@@ -18,7 +18,7 @@ void setup() {
     digitalWrite(LED, HIGH);
 
     WiFi.mode(WIFI_STA);
-    ThingSpeak.begin(client);  // Initialize ThingSpeak
+    ThingSpeak.begin(client);
     WiFi.begin(ssid, password);
     Serial.println("Connecting to WiFi...");
 
