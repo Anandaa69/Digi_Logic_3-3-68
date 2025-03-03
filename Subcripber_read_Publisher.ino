@@ -3,7 +3,6 @@
 
 #define BUILTIN_LED 32
 
-// ข้อมูล WiFi และ MQTT Broker
 const char* ssid = "xxxxxxx";
 const char* password = "xxxxxxx";
 
@@ -25,7 +24,6 @@ void callback(String &topic, String &payload) {
     Serial.println(payload);
     Serial.println("-----------------------");
 
-    // แสดงสถานะอุปกรณ์ ถ้าได้รับจาก "DEVICE_STATUS"
     if (topic == topic2) {
         if (payload == "ON") {
             Serial.println("🔵 Device is ONLINE!");
